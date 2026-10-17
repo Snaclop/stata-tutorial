@@ -1,13 +1,9 @@
 version 17
 set more off
 * 字符串清理与拼接
-clear
-input str20 a str20 b
-" a b " "c。d。"
-" x y " "z。"
-end
-generate trimmed = ustrtrim(a)
-replace a = subinstr(a," ","",.)
-replace b = subinstr(b,"。","",1)
-generate combined = upper(a+b)
-list, noobs
+sysuse auto, clear
+generate padded_make = "  " + make + "  "
+generate clean_make = ustrtrim(padded_make)
+generate upper_make = ustrupper(clean_make)
+generate make_prefix = substr(clean_make, 1, 3)
+list make padded_make clean_make upper_make make_prefix in 1/5, noobs

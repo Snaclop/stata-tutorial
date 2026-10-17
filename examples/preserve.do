@@ -1,14 +1,13 @@
 version 17
 set more off
 * preserve / restore：临时修改后恢复
-clear
-input byte id str1 team int score
-1 "A" 80
-2 "A" 90
-3 "B" 70
-end
+sysuse auto, clear
+count
 preserve
-collapse (mean) score, by(team)
+keep if foreign == 1
+count
+collapse (mean) mean_price=price mean_weight=weight
 list, noobs
 restore
-list, noobs
+count
+summarize price weight

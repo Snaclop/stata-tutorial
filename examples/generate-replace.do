@@ -1,13 +1,11 @@
 version 17
 set more off
 * generate 与 replace：创建和修改
-clear
-input id price qty score
-1 12 3 80
-2 15 2 575
-3 20 4 .
-end
-generate double amount=price*qty
-* 假设已经核实 id=2 的原始分数应为57.5。
-replace score=57.5 if id==2 & score==575
-list, noobs
+sysuse auto, clear
+generate double price_sq = price^2
+generate double rep78new = rep78
+summarize rep78
+local repair_mean = r(mean)
+replace rep78new = `repair_mean' if missing(rep78new)
+list make rep78 rep78new if missing(rep78), noobs
+summarize rep78 rep78new price_sq

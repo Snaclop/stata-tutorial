@@ -1,22 +1,18 @@
 version 17
 set more off
 * merge：按键匹配数据
-clear
-tempfile cityinfo
-input byte city str8 region
-1 "North"
-2 "South"
-end
-isid city
-save "`cityinfo'"
-clear
-input byte id byte city int spending
-1 1 120
-2 1 150
-3 2 180
-4 3 100
-end
-isid id
-merge m:1 city using "`cityinfo'", keepusing(region) generate(match_status)
-tabulate match_status
-list, noobs
+sysuse auto, clear
+generate int auto_id = _n
+tempfile attributes
+preserve
+keep auto_id foreign weight
+drop if auto_id == 74
+isid auto_id
+save "`attributes'"
+restore
+keep auto_id make price
+isid auto_id
+merge 1:1 auto_id using "`attributes'"
+tabulate _merge
+list auto_id make price foreign weight _merge in 1/5, noobs
+list auto_id make _merge if _merge != 3, noobs

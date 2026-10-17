@@ -1,18 +1,12 @@
 version 17
 set more off
 * label：数据标签、变量标签和值标签
-clear
-input byte id employed double income
-1 1 6000
-2 0 0
-3 1 7500
-end
-label data "演示调查数据"
-label variable employed "是否就业"
-label variable income "月收入（元）"
-label define yesno 0 "否" 1 "是"
-label values employed yesno
-label list yesno
-list, noobs
-list id employed, nolabel noobs
-count if employed == 1
+sysuse auto, clear
+label data "1978 年汽车样本"
+label variable price "汽车价格（美元）"
+label define tutorial_origin 0 "国产车" 1 "进口车"
+label values foreign tutorial_origin
+tabulate foreign
+tabulate foreign, nolabel
+label list tutorial_origin
+describe price foreign

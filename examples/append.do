@@ -1,20 +1,16 @@
 version 17
 set more off
 * append：把同结构数据纵向追加
-clear
-tempfile second
-input byte id int score
-3 78
-4 92
-end
-save "`second'"
-clear
-input byte id int score
-1 85
-2 90
-end
-append using "`second'", generate(source)
-sort id
-list, noobs
-tabulate source
-isid id
+sysuse auto, clear
+tempfile domestic imported
+preserve
+keep if foreign == 0
+save "`domestic'"
+restore
+keep if foreign == 1
+save "`imported'"
+use "`domestic'", clear
+append using "`imported'", generate(source)
+tabulate source foreign
+count
+list make foreign source in 1/5, noobs

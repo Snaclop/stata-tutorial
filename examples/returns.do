@@ -1,14 +1,11 @@
 version 17
 set more off
 * return list 与 r()：读取结果
-clear
-input x
-10
-20
-30
-end
-quietly summarize x
-local avg = r(mean)
-count if x>20
-display "大于20的行数=" r(N)
-display "刚才的均值=" `avg'
+sysuse auto, clear
+summarize price, detail
+return list
+display r(mean)
+display r(max) / r(min)
+local price_mean = r(mean)
+generate byte high_price = (price >= `price_mean') if !missing(price)
+tabulate high_price
