@@ -17,18 +17,18 @@
 built-in command:  summarize
 
 . which collapse
-D:\Program Files\Stata19\ado\base\c\collapse.ado
+PATH/TO/STATA/ado/base/c/collapse.ado
 *! version 6.2.2  28jun2020
 
 . ado dir
 
 . sysdir
-   STATA:  D:\Program Files\Stata19\
-    BASE:  D:\Program Files\Stata19\ado\base\
-    SITE:  D:\Program Files\Stata19\ado\site\
-    PLUS:  C:\Users\Billi\ado\plus\
-PERSONAL:  C:\Users\Billi\ado\personal\
-OLDPLACE:  c:\ado\
+   STATA:  PATH/TO/STATA/
+    BASE:  PATH/TO/STATA/ado/base/
+    SITE:  PATH/TO/STATA/ado/site/
+    PLUS:  PATH/TO/USER/ado/plus/
+PERSONAL:  PATH/TO/USER/ado/personal/
+OLDPLACE:  PATH/TO/ADO/
 </code></pre>
 </section><section id="pitfalls"><h2>常见错误</h2><ul><li>不要把网页里未知来源的 net install 地址直接当作可信依赖；先检查作者、用途和文档。</li><li>不能把网络连接失败与命令不存在混为一谈；which 检查本地，ssc 操作依赖网络。</li></ul></section><section id="exercise"><h2>动手练习</h2><p>脚本在自己电脑可运行、在别人电脑提示扩展命令不存在，应补充什么？</p>
 <details class="answer"><summary>查看参考答案</summary><p>给出依赖包名、安装来源和已验证版本；对方先核实并安装依赖，再运行脚本。</p>
