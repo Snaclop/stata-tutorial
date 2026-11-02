@@ -5,7 +5,6 @@ sysuse auto, clear
 save "tutorial_saved.dta", replace
 export excel make price mpg using "tutorial_saved.xlsx", ///
     sheet("Cars") firstrow(variables) replace
-export delimited make price mpg using "tutorial_saved.csv", replace
 clear
 use "tutorial_saved.dta", clear
 describe make price mpg

@@ -1,9 +1,7 @@
 version 17
 set more off
-* 字符串清理与拼接
+* subinstr：替换字符串中的指定内容
 sysuse auto, clear
-generate padded_make = "  " + make + "  "
-generate clean_make = ustrtrim(padded_make)
-generate upper_make = ustrupper(clean_make)
-generate make_prefix = substr(clean_make, 1, 3)
-list make padded_make clean_make upper_make make_prefix in 1/5, noobs
+generate make_compact = subinstr(make, " ", "", .)
+generate make_first = subinstr(make, " ", "-", 1)
+list make make_compact make_first in 1/5, noobs

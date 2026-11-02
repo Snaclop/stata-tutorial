@@ -1,11 +1,7 @@
 version 17
 set more off
-* assert 与 isid：让数据规则可以检查
+* isid：检查观测标识是否唯一
 sysuse auto, clear
 isid make
-assert !missing(make, price, mpg)
-assert price > 0
-assert inlist(foreign, 0, 1)
-assert inrange(rep78, 1, 5) if !missing(rep78)
-count if missing(rep78)
-list make rep78 if missing(rep78), noobs
+list make in 1/5, noobs
+count
